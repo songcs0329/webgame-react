@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<title>gugudan</title>
+</head>
+<body>
+	<div id="root"></div>
+	<!-- <script type="text/babel">
+		class GuGuDan extends React.Component {
+			constructor(props) {
+				super(props)
+				this.state = {
+					first: Math.ceil(Math.random() * 9),
+					second: Math.ceil(Math.random() * 9),
+					value: '',
+					result: '',
+				}
+				this.input = React.createRef()
+			}
+
+			handleValue = e => {
+				const { target: { value } } = e
+				this.setState({
+					value
+				})
+			}
+			handleResult = e => {
+				e.preventDefault()
+				const { first, second, value, result } = this.state
+				if(first * second !== parseInt(value)) {
+					this.setState({
+						result: '땡',
+						value: '',
+					})
+				} else {
+					this.setState(prev => {
+						return {
+							result: `${prev.first} * ${prev.second} = ${prev.value} 정답!`,
+							first: Math.ceil(Math.random() * 9),
+							second: Math.ceil(Math.random() * 9),
+							value: '',
+						}
+					})
+				}
+				this.input.current.focus()
+			}
+
+			render() {
+				const { first, second, value, result } = this.state
+				return (
+					<>
+						<div>{first}곱하기{second}는?</div>
+						<form onSubmit={this.handleResult}>
+							<input type="number" ref={this.input} value={value} onChange={this.handleValue} />
+							<button type="submit">입력</button>
+						</form>
+						<div>{result}</div>
+					</>
+				)
+			}
+		}
+	</script> -->
+	<script type="text/babel">
+		const GuGuDan = () => {
+			const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9))
+			const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9))
+			const [value, setValue] = React.useState('')
+			const [result, setResult] = React.useState('')
+			const inputRef = React.useRef(null)
+
+			const handleValue = e => setValue(e.target.value)
+			const handleResult = e => {
+				e.preventDefault()
+				if(first * second !== parseInt(value)) {
+					setResult('땡')
+				} else {
+					setResult(`${first} * ${second} = ${value} 정답!`)
+					setFirst(Math.ceil(Math.random() * 9))
+					setSecond(Math.ceil(Math.random() * 9))
+				}
+				setValue('')
+				inputRef.current.focus()
+			}
+
+			return (
+				<>
+					<div>{first} 곱하기 {second}는?</div>
+					<form onSubmit={handleResult}>
+						<input type="number" ref={inputRef} value={value} onChange={handleValue} />
+						<button type="submit">입력</button>
+					</form>
+					<div>{result}</div>
+				</>
+			)
+		}
+	</script>
+	<script type="text/babel">
+		ReactDOM.render(<GuGuDan />, document.querySelector('#root'))
+	</script>
+</body>
+</html>
