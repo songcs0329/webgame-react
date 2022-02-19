@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import EndTalk from './EndTalk'
+// import EndTalk from './EndTalk'
+import EndTalkClass from './EndTalkClass'
 
 ReactDOM.render(
-	<EndTalk />, document.querySelector('#root')
+	<EndTalkClass />, document.querySelector('#root')
 )
