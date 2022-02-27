@@ -9,7 +9,7 @@ interface Configuration extends WebpackConfiguration {
 }
 
 const config: Configuration = {
-	name: 'endtalk-dev',
+	name: 'responsecheck-dev',
 	mode: 'development', // production
 	devtool: 'eval', // hidden-source-map
 	resolve: {
