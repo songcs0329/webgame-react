@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dispatch, FC } from 'react';
+import { Dispatch, FC, useMemo } from 'react';
 import Tr from './Tr';
 import { TableData } from './types';
 
@@ -14,14 +14,16 @@ const Table: FC<Props> = ({ dispatch, tableData }) => {
 			<tbody>
 				{
 					Array(tableData.length).fill(null).map((tr, index) => {
-						return (
-							<Tr
-								key={index}
-								dispatch={dispatch}
-								rowIndex={index}
-								rowData={tableData[index]}
-							/>
-						)
+						return useMemo(() => {
+							return (
+								<Tr
+									key={index}
+									dispatch={dispatch}
+									rowIndex={index}
+									rowData={tableData[index]}
+								/>
+							)
+						}, [tableData[index]])
 					})
 				}
 			</tbody>
