@@ -1,4 +1,4 @@
-import { CHANGE_TURN, ClickCellAction, CLICK_CELL, ReducerState, RESET_GAME, SetWinnerAction, SET_WINNER, ReducerActions, Turn } from "../types";
+import { CHANGE_TURN, ClickCellAction, CLICK_CELL, ReducerState, RESET_GAME, SetWinnerAction, SET_WINNER, ReducerActions, Winner } from "../types";
 
 export const initialState: ReducerState = {
 	winner: '',
@@ -11,7 +11,7 @@ export const initialState: ReducerState = {
   recentCell: [-1, -1],
 }
 
-export const setWinner = (winner: Turn): SetWinnerAction => {
+export const setWinner = (winner: Winner): SetWinnerAction => {
 	return { type: SET_WINNER, winner }
 }
 export const clickCell = (row: number, cell: number): ClickCellAction => {

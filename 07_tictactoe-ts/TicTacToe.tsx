@@ -25,7 +25,10 @@ const TicTacToe = () => {
 					if(!cell) all = false
 				})
 			})
-			if(all) dispatch({ type: RESET_GAME })
+			if(all) {
+				dispatch({ type: RESET_GAME })
+				dispatch(setWinner(''))
+			}
 			else dispatch({ type: CHANGE_TURN })
 		}
 	}, [recentCell])

@@ -5,8 +5,9 @@ export const RESET_GAME = 'RESET_GAME' as const
 
 export type TableData = string[][]
 export type Turn = 'O' | 'X'
+export type Winner = 'O' | 'X' | ''
 export interface ReducerState {
-	winner: 'O' | 'X' | '',
+	winner: Winner,
   turn: Turn,
   tableData: TableData,
   recentCell: [number, number],
@@ -14,7 +15,7 @@ export interface ReducerState {
 export type ReducerActions = SetWinnerAction | ClickCellAction | ChangeTurnAction | ResetGameAction
 export interface SetWinnerAction {
 	type: typeof SET_WINNER,
-	winner: 'O' | 'X',
+	winner: Winner,
 }
 export interface ClickCellAction {
 	type: typeof CLICK_CELL,
