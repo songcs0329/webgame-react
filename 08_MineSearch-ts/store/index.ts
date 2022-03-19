@@ -1,4 +1,4 @@
-import { TState, StartGameAction, OpenCellAction, TActions, TCode, ClickMineAction, FlagCellAction, QuestionCellAction, NormalizeCellAction, TContext } from './../types/index';
+import { TState, StartGameAction, OpenCellAction, TActions, TCode, ClickMineAction, FlagCellAction, QuestionCellAction, NormalizeCellAction, TContext } from './../types';
 import { CODE, START_GAME, OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL, INCREMENT_TIMER } from '../constants' 
 import { arroundExcept, plantMine } from '../utils'
 import { createContext } from 'react';
@@ -35,7 +35,6 @@ export const initialState: TState = {
 
 // reducer action
 export const reducer = (state = initialState, action: TActions): TState => {
-	console.log(action)
 	switch (action.type) {
 		case START_GAME: {
 			const { row, col, mine } = action

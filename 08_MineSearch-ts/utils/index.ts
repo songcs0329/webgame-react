@@ -2,13 +2,13 @@ import { TCode } from './../types/index';
 import { CODE } from '../constants'
 
 export const plantMine = (row: number, col: number, mine: number): TCode[][] => {
-	const candidate = Array(row * col).fill(null).map((arr, i) => i)
+	const candidate = Array(row * col).fill(undefined).map((arr, i) => i)
 	const shuffle = []
 	while(candidate.length > row * col - mine) {
 		const chosen = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0]
 		shuffle.push(chosen)
 	}
-	const data = []
+	const data: TCode[][] = []
 	for(let i = 0; i < row; i++) {
 		const rowData: TCode[] = []
 		data.push(rowData)
@@ -16,11 +16,11 @@ export const plantMine = (row: number, col: number, mine: number): TCode[][] => 
 			rowData.push(CODE.NORMAL)
 		}
 	}
-	for(let k = 0; k < shuffle.length; k++) {
-		const ver = Math.floor(shuffle[k] / col)
-		const hor = shuffle[k] % col
+	shuffle.forEach(shuffleItem => {
+		const ver = Math.floor(shuffleItem / col)
+		const hor = shuffleItem % col
 		data[ver][hor] = CODE.MINE
-	}
+	})
 	console.log(data)
 	return data
 }
