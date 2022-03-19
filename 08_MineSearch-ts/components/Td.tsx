@@ -1,6 +1,7 @@
-import React, { memo, useContext, useCallback, useMemo, FC } from "react"
+import React, { memo, useContext, useCallback, FC } from "react"
 import { CODE } from "../constants"
 import { clickMine, flagCell, normalizeCell, openCell, questionCell, TableContext } from "../store"
+import { TCode } from "../types"
 import { getTdStyle, getTdText } from "../utils"
 
 interface TProps {
@@ -8,7 +9,7 @@ interface TProps {
 	colIndex: number,
 }
 
-const Td: FC<TProps> = memo(({ rowIndex, colIndex }) => {
+const Td: FC<TProps> = ({ rowIndex, colIndex }) => {
 	const { tableData, halted, dispatch } = useContext(TableContext)
 
 	const onClickTd = useCallback(() => {
@@ -51,16 +52,31 @@ const Td: FC<TProps> = memo(({ rowIndex, colIndex }) => {
 		}
 	}, [tableData[rowIndex][colIndex], halted])
 
-	console.log('Td rendered');
-	return useMemo(() =>(
+	return (
+		<RealTd
+			onClickTd={onClickTd}
+			onRightClickTd={onRightClickTd}
+			data={tableData[rowIndex][colIndex]}
+		/>
+	)
+}
+
+interface RealTdProps {
+	onClickTd: () => void,
+	onRightClickTd: (e: React.MouseEvent) => void,
+	data: TCode
+}
+
+const RealTd: FC<RealTdProps> = memo(({ data, onClickTd, onRightClickTd }) => {
+	return (
 		<td
-			style={getTdStyle(tableData[rowIndex][colIndex])}
+			style={getTdStyle(data)}
 			onClick={onClickTd}
 			onContextMenu={onRightClickTd}
 		>
-			{getTdText(tableData[rowIndex][colIndex])}
+			{getTdText(data)}
 		</td>
-	), [tableData[rowIndex][colIndex]]);
+	)
 })
 
 export default Td;

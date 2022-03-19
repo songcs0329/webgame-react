@@ -23,9 +23,9 @@ const Form = memo(() => {
 
 	return (
 		<div>
-			<input type="text" name="row" value={row} onChange={handleChangeRow} />
-			<input type="text" name="col" value={col} onChange={handleChangeCol} />
-			<input type="text" name="mine" value={mine} onChange={handleChangeMine} />
+			<input type="text" placeholder='가로' name="row" value={row} onChange={handleChangeRow} />
+			<input type="text" placeholder='세로' name="col" value={col} onChange={handleChangeCol} />
+			<input type="text" placeholder='지뢰' name="mine" value={mine} onChange={handleChangeMine} />
 			<button type="button" onClick={onClickBtn}>START</button>
 		</div>
 	)
