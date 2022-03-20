@@ -6,6 +6,14 @@ import NumberBaseball from './components/NumberBaseball/NumberBaseball';
 import RSP from './components/RSP/RSP';
 
 const GameMatcher = () => {
+	// const { name } = useParams()
+	// console.log('params name', name)
+	// if(!name) return <div>no match games</div>
+	// if(name === 'number-baseball') return <NumberBaseball />
+	// else if(name === 'rsp') return <RSP />
+	// else if(name === 'lotto') return <Lotto />
+	// else return <div>no match games</div>
+		
     return (
       <Routes>
           <Route path="number-baseball" element={<NumberBaseball />} />

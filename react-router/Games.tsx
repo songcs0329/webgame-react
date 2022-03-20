@@ -13,8 +13,10 @@ const Games = () => {
 			</div>
 			<div>
 				<Routes>
-					<Route path='/*' element={<GameMatcher />} />
+					<Route path='*' element={<GameMatcher />} />
 					<Route path='/games/*' element={<GameMatcher />} />
+					{/* <Route path='/' element={<GameMatcher />} />
+					<Route path='/games/:name' element={<GameMatcher />} /> */}
 				</Routes>
 			</div>
 		</BrowserRouter>
